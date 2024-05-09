@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd http://www.springframework.org/schema/context https://www.springframework.org/schema/context/spring-context.xsd">
+    <bean id="driver" class="kr.or.nextit.xml.Driver" />
+    <bean id="hankookTire" class="kr.or.nextit.xml.HankookTire" />
+    <bean id="car" class="kr.or.nextit.xml.Car">
+        <constructor-arg ref="hankookTire" />
+    </bean>
+    <bean id="memberDao" class="org.example.MemberDao"/>
+    <bean id="printer" class="org.example.MemberPrinter"/>
+<!--    <context:component-scan base-package="kr.or.nextit.xml" />-->
+
+<!--    property방식 getter,setter -->
+    <bean id = "memberListPrinter" class="org.example.MemberPrinter">
+        <property name="memberDao" ref="memberDao"/>
+        <property name="printer" ref="printer"/>
+    </bean>
+<!--    constructor-arg 기본생성자방식 -->
+    <bean id ="memberInfoPrinter" class="org.example.MemberInfoPrinter">
+        <constructor-arg ref="memberDao"/>
+        <constructor-arg ref="printer"/>
+    </bean>
+</beans>
